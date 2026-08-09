@@ -1,0 +1,188 @@
+.card {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  gap: 18px;
+  padding: 12px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-soft);
+  border-radius: var(--r-card);
+  box-shadow: var(--sh-card);
+}
+
+/* ---- portrait ---------------------------------------------------- */
+.portrait {
+  position: relative;
+  min-height: 316px;
+  border-radius: var(--r-portrait);
+  overflow: hidden;
+  box-shadow: var(--sh-portrait);
+}
+
+.photo {
+  object-fit: cover;
+  object-position: 50% 32%;
+}
+
+/* ---- body -------------------------------------------------------- */
+.body {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 0 20px 0;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--fs-name);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.002em;
+  color: var(--c-ink);
+}
+
+.verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px 7px;
+  font-size: var(--fs-verified);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--gold-ink);
+  background: var(--gold-pale);
+  border-radius: var(--r-pill);
+}
+
+.verifiedIcon {
+  font-size: 11px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: var(--fs-location);
+  color: var(--c-ink-strong);
+}
+
+.pin {
+  font-size: 15px;
+  color: var(--c-ink-strong);
+  flex: 0 0 auto;
+}
+
+/* ---- quote ------------------------------------------------------- */
+.quote {
+  position: relative;
+  margin-top: 24px;
+  padding-left: 30px;
+}
+
+.mark {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--c-quote-mark);
+}
+
+.quoteText {
+  max-width: var(--measure-quote);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--fs-quote);
+  line-height: var(--lh-quote);
+  color: var(--c-ink);
+}
+
+.quoteHeart {
+  display: inline-block;
+  vertical-align: -0.1em;
+  margin-left: 6px;
+  font-size: 13px;
+  color: var(--gold-mid);
+  filter: drop-shadow(0 0 4px rgba(var(--rgb-gold-glow), 0.7));
+}
+
+/* ---- meta row ---------------------------------------------------- */
+.meta {
+  display: flex;
+  /* wraps only as a safety valve — at the reference width all three fit on one row */
+  flex-wrap: wrap;
+  gap: 13px 13px;
+  margin-top: auto;
+  padding-top: 26px;
+}
+
+.metaItem {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.metaLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-meta-label);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--c-ink-strong);
+}
+
+.metaIcon {
+  font-size: 12px;
+  color: var(--c-body-soft);
+  flex: 0 0 auto;
+}
+
+.metaValue {
+  margin-top: 11px;
+  font-size: var(--fs-meta-value);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--c-body);
+}
+
+/* ---- responsive -------------------------------------------------- */
+@media (max-width: 860px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .portrait {
+    aspect-ratio: 310 / 326;
+    min-height: 0;
+  }
+
+  .body {
+    padding: 22px 10px 10px;
+  }
+
+}
+
+@media (max-width: 620px) {
+  .name {
+    font-size: 34px;
+  }
+
+  .quoteText {
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  .meta {
+    gap: 16px 22px;
+  }
+}

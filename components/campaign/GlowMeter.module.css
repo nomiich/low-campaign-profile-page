@@ -1,0 +1,133 @@
+/* ==================================================================
+   GlowMeter — warm gold fill that brightens toward its leading edge,
+   bleeds light onto the track, and carries fine sparkle points.
+   ================================================================== */
+
+.track {
+  --meter-h: 33px;
+  --meter-fill: 0%;
+  position: relative;
+  height: var(--meter-h);
+  border-radius: var(--r-pill);
+  background: var(--track);
+  box-shadow: var(--sh-meter-track);
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--meter-fill);
+  min-width: var(--meter-h);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  background-image: linear-gradient(
+    90deg,
+    var(--meter-1) 0%,
+    var(--meter-2) 10%,
+    var(--meter-3) 17%,
+    var(--meter-4) 23%,
+    var(--meter-5) 29%,
+    var(--meter-6) 36%,
+    var(--meter-7) 42%,
+    var(--meter-8) 48%,
+    var(--meter-9) 60%,
+    var(--meter-10) 74%,
+    var(--meter-11) 81%,
+    var(--meter-12) 89%,
+    var(--meter-13) 97%
+  );
+  box-shadow:
+    0 0 10px rgba(var(--rgb-meter-glow), 0.55),
+    0 0 22px rgba(var(--rgb-meter-glow), 0.3),
+    0 0 40px rgba(var(--rgb-meter-glow), 0.16);
+}
+
+/* Vertical rim light: the fill reads as a lit tube, brighter at the edges. */
+.sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--rgb-ring-warm), 0.5) 0%,
+    rgba(var(--rgb-ring-warm), 0.14) 14%,
+    rgba(var(--rgb-ring-warm), 0) 38%,
+    rgba(var(--rgb-ring-warm), 0) 64%,
+    rgba(var(--rgb-ring-warm), 0.16) 88%,
+    rgba(var(--rgb-ring-warm), 0.42) 100%
+  );
+}
+
+/* Fine sparkle points scattered across the fill. */
+.sparks {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    radial-gradient(1.3px 1.3px at 6% 34%, rgba(var(--rgb-spark), 0.95), transparent 100%),
+    radial-gradient(1px 1px at 13% 66%, rgba(var(--rgb-spark), 0.8), transparent 100%),
+    radial-gradient(1.6px 1.6px at 21% 28%, rgba(var(--rgb-spark), 0.9), transparent 100%),
+    radial-gradient(1.1px 1.1px at 29% 72%, rgba(var(--rgb-spark), 0.75), transparent 100%),
+    radial-gradient(1.4px 1.4px at 37% 42%, rgba(var(--rgb-spark), 0.9), transparent 100%),
+    radial-gradient(1px 1px at 45% 24%, rgba(var(--rgb-spark), 0.8), transparent 100%),
+    radial-gradient(1.7px 1.7px at 53% 62%, rgba(var(--rgb-spark), 0.95), transparent 100%),
+    radial-gradient(1.1px 1.1px at 61% 33%, rgba(var(--rgb-spark), 0.8), transparent 100%),
+    radial-gradient(1.4px 1.4px at 69% 70%, rgba(var(--rgb-spark), 0.9), transparent 100%),
+    radial-gradient(1px 1px at 77% 40%, rgba(var(--rgb-spark), 0.75), transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 60%, rgba(var(--rgb-spark), 0.85), transparent 100%),
+    radial-gradient(1.1px 1.1px at 92% 30%, rgba(var(--rgb-spark), 0.8), transparent 100%);
+  animation: meter-twinkle 4.5s ease-in-out infinite;
+}
+
+/* Slow travelling highlight. */
+.shimmer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    100deg,
+    rgba(var(--rgb-spark), 0) 40%,
+    rgba(var(--rgb-spark), 0.28) 50%,
+    rgba(var(--rgb-spark), 0) 60%
+  );
+  background-size: 220% 100%;
+  animation: meter-shimmer 5.5s linear infinite;
+}
+
+/* Bright leading edge, bleeding onto the empty part of the track. */
+.tip {
+  position: absolute;
+  top: 50%;
+  left: var(--meter-fill);
+  width: calc(var(--meter-h) * 1.5);
+  height: calc(var(--meter-h) * 1.5);
+  transform: translate(-62%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    rgba(var(--rgb-ring-hot), 0.9) 0%,
+    rgba(var(--rgb-ring-warm), 0.42) 38%,
+    rgba(var(--rgb-bloom), 0.16) 64%,
+    rgba(var(--rgb-bloom), 0) 84%
+  );
+  pointer-events: none;
+}
+
+@keyframes meter-twinkle {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes meter-shimmer {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -120% 0;
+  }
+}

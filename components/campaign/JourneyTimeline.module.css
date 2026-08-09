@@ -1,0 +1,150 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px 24px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-soft);
+  border-radius: var(--r-card);
+  box-shadow: var(--sh-card);
+}
+
+.heading {
+  position: relative;
+  padding-bottom: 12px;
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--c-ink);
+}
+
+.heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 47px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grad-rule);
+}
+
+.list {
+  margin-top: 14px;
+}
+
+/* ---- step -------------------------------------------------------- */
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 45px minmax(0, 1fr) auto;
+  column-gap: 26px;
+  padding-bottom: 13px;
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+/* Dotted connector between consecutive nodes. */
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 47px;
+  bottom: 2px;
+  width: 1.5px;
+  transform: translateX(-50%);
+  background-image: repeating-linear-gradient(
+    180deg,
+    var(--gold-line) 0 2px,
+    rgba(var(--rgb-gold-line), 0) 2px 6px
+  );
+}
+
+/* ---- node -------------------------------------------------------- */
+.node {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: var(--r-node);
+  color: var(--c-white);
+  background: var(--grad-node);
+  box-shadow: var(--sh-node), inset 0 -3px 8px rgba(var(--rgb-node-shadow), 0.28);
+}
+
+.glyph {
+  font-size: 19px;
+}
+
+.upcoming .node {
+  color: var(--gold-ink);
+  background: var(--grad-node-upcoming);
+  box-shadow: var(--sh-node-soft), inset 0 -2px 6px rgba(var(--rgb-node-shadow-soft), 0.14);
+}
+
+/* ---- text -------------------------------------------------------- */
+.text {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  min-width: 0;
+  padding-top: 1px;
+}
+
+.title {
+  font-size: var(--fs-step-title);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--c-ink-strong);
+}
+
+.body {
+  max-width: var(--measure-step);
+  margin-top: 6px;
+  font-size: var(--fs-step-body);
+  line-height: var(--lh-step);
+  color: var(--c-body);
+}
+
+.bodyLink {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--c-body);
+}
+
+.meta {
+  grid-column: 3;
+  grid-row: 1;
+  padding-top: 2px;
+  font-size: var(--fs-step-meta);
+  color: var(--c-muted);
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* ---- responsive -------------------------------------------------- */
+@media (max-width: 620px) {
+  .card {
+    padding: 20px;
+  }
+
+  .step {
+    grid-template-columns: 45px minmax(0, 1fr);
+    column-gap: 18px;
+  }
+
+  .meta {
+    grid-column: 2;
+    grid-row: 3;
+    padding-top: 6px;
+    text-align: left;
+  }
+
+  .text {
+    grid-row: 1 / span 2;
+  }
+}

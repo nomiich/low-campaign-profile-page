@@ -1,0 +1,156 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 44px 30px 30px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-soft);
+  border-radius: var(--r-card);
+  box-shadow: var(--sh-card);
+  isolation: isolate;
+}
+
+/* Warm wash behind the orb — part of the card, not the orb. */
+.wash {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    radial-gradient(70% 76% at 82% 28%, rgba(var(--rgb-wash), 0.62) 0%, rgba(var(--rgb-wash), 0) 70%),
+    linear-gradient(128deg, rgba(var(--rgb-white), 0) 46%, rgba(var(--rgb-wash-deep), 0.3) 100%);
+  pointer-events: none;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-body-soft);
+}
+
+.info {
+  display: grid;
+  place-items: center;
+  color: var(--c-muted);
+  border-radius: 50%;
+}
+
+.infoIcon {
+  font-size: 13px;
+}
+
+.figures {
+  margin-top: 28px;
+}
+
+.amount {
+  font-family: var(--font-display);
+  font-size: var(--fs-amount);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.004em;
+  color: var(--c-ink);
+}
+
+.of {
+  margin-top: 18px;
+  font-size: var(--fs-goal-of);
+  line-height: 1.1;
+  color: var(--c-body);
+}
+
+/* The orb is pinned to the card's top-right; it overlaps the figures block. */
+.orb {
+  --orb-size: 124px;
+  position: absolute;
+  top: 51px;
+  right: 54px;
+  z-index: 1;
+}
+
+.meter {
+  margin-top: 45px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 32px;
+  font-size: var(--fs-goal-foot);
+  line-height: 1.2;
+  color: var(--c-body);
+}
+
+.hearts {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.heartIcon {
+  font-size: 15px;
+  color: var(--gold-mid);
+  flex: 0 0 auto;
+}
+
+.days {
+  white-space: nowrap;
+}
+
+/* ---- responsive -------------------------------------------------- */
+@media (max-width: 1080px) {
+  .orb {
+    right: 34px;
+  }
+}
+
+@media (max-width: 620px) {
+  .card {
+    padding: 24px 20px 22px;
+  }
+
+  .orb {
+    --orb-size: 92px;
+    top: 34px;
+    right: 20px;
+  }
+
+  .amount {
+    font-size: 40px;
+  }
+
+  .of {
+    font-size: 15px;
+    margin-top: 12px;
+  }
+
+  .figures {
+    margin-top: 18px;
+  }
+
+  .meter {
+    --meter-h: 26px;
+    margin-top: 32px;
+  }
+
+  .footer {
+    margin-top: 22px;
+    font-size: var(--fs-body);
+  }
+}
+
+@media (max-width: 430px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

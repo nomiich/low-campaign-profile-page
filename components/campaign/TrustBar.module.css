@@ -1,0 +1,154 @@
+.bar {
+  display: grid;
+  grid-template-columns: 671px minmax(0, 1fr);
+  align-items: center;
+  padding: 19px 24px 19px 35px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-soft);
+  border-radius: var(--r-card);
+  box-shadow: var(--sh-card);
+}
+
+.col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  min-width: 0;
+}
+
+.divider {
+  position: absolute;
+  left: -27px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(180deg, rgba(var(--rgb-divider), 0) 0%, var(--c-divider) 50%, rgba(var(--rgb-divider), 0) 100%);
+}
+
+.icon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.iconBare {
+  width: 48px;
+  height: 48px;
+  color: var(--gold-soft);
+  filter: drop-shadow(0 0 9px rgba(var(--rgb-gold-glow), 0.95));
+}
+
+.iconBare .glyph {
+  font-size: 40px;
+}
+
+.iconRing {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  color: var(--gold-ink);
+  background: var(--grad-icon-ring);
+  border: 1px solid var(--gold-line);
+  box-shadow: 0 0 14px rgba(var(--rgb-gold-glow-soft), 0.6), inset 0 1px 2px rgba(var(--rgb-white), 0.9);
+}
+
+.iconRing .glyph {
+  font-size: 22px;
+}
+
+.col:nth-child(2) {
+  gap: 18px;
+}
+
+.text {
+  min-width: 0;
+}
+
+/* Only the second column wraps in the reference; the first runs on one line. */
+.col:nth-child(2) .text {
+  max-width: var(--measure-trust);
+}
+
+.heading {
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-ink-strong);
+}
+
+.body {
+  margin-top: 8px;
+  font-size: var(--fs-trust-body);
+  line-height: var(--lh-trust);
+  color: var(--c-body);
+}
+
+.link {
+  font-size: var(--fs-link);
+  color: var(--gold-ink);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--gold-line);
+  white-space: nowrap;
+}
+
+.link:hover {
+  text-decoration-color: currentColor;
+}
+
+.linkArrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.linkArrow .linkIcon {
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* The second column's link is set in ink, underlined, in the reference. */
+.col:nth-child(2) .link {
+  color: var(--c-ink-strong);
+  text-decoration-color: var(--c-ink-strong);
+  white-space: normal;
+}
+
+/* ---- responsive -------------------------------------------------- */
+@media (max-width: 1080px) {
+  .bar {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 26px;
+  }
+
+  .divider {
+    left: -13px;
+  }
+}
+
+@media (max-width: 820px) {
+  .bar {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .col {
+    padding-left: 0;
+  }
+
+  .divider {
+    left: 0;
+    right: 0;
+    top: -10px;
+    transform: none;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(var(--rgb-divider), 0) 0%, var(--c-divider) 50%, rgba(var(--rgb-divider), 0) 100%);
+  }
+}
